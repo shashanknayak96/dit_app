@@ -1,14 +1,20 @@
-import 'package:dit_app/utils/globals.dart';
 import 'package:flutter/material.dart';
 
+import '../model/task.dart';
+import '../utils/globals.dart';
+
 class TaskBox extends StatefulWidget {
+  final String id;
   final String value;
   final bool isChecked;
+  final Function onChanged;
 
   const TaskBox({
     super.key,
+    required this.id,
     this.value = '',
     required this.isChecked,
+    required this.onChanged,
   });
 
   @override
@@ -16,12 +22,9 @@ class TaskBox extends StatefulWidget {
 }
 
 class _TaskBoxState extends State<TaskBox> {
-  var isChecked = false;
-
   @override
   void initState() {
     super.initState();
-    isChecked = widget.isChecked == true;
   }
 
   @override
@@ -36,7 +39,7 @@ class _TaskBoxState extends State<TaskBox> {
           child: InkWell(
             borderRadius: BorderRadius.circular(Globals.borderRadius),
             onTap: () => {
-              _onCheckChanged(),
+              ToggleCheckbox(widget.id),
             },
             child: Row(
               children: [
@@ -64,8 +67,8 @@ class _TaskBoxState extends State<TaskBox> {
             color: Colors.white,
           ),
         ),
-        value: isChecked,
-        onChanged: (v) => _onCheckChanged(),
+        value: widget.isChecked,
+        onChanged: (v) => ToggleCheckbox(widget.id),
       ),
     );
   }
@@ -75,16 +78,10 @@ class _TaskBoxState extends State<TaskBox> {
       padding: const EdgeInsets.all(8.0),
       child: Text(
         widget.value,
-        style: isChecked
-            ? Theme.of(context).textTheme.headline6
-            : Theme.of(context).textTheme.headline5,
+        style: widget.isChecked
+            ? Theme.of(context).textTheme.headline4
+            : Theme.of(context).textTheme.headline3,
       ),
     );
-  }
-
-  _onCheckChanged() {
-    setState(() {
-      isChecked = !isChecked;
-    });
   }
 }

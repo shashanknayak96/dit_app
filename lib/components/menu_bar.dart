@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../utils/globals.dart';
+
 class MenuBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -18,10 +20,10 @@ class MenuBar extends StatelessWidget {
             Row(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const <Widget>[
+              children: <Widget>[
                 Text(
-                  "My tasks for the day",
-                  style: TextStyle(
+                  Globals.menuMessage,
+                  style: const TextStyle(
                     color: Colors.white,
                     fontSize: 22,
                   ),

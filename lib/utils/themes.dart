@@ -9,23 +9,32 @@ class CustomTheme {
       backgroundColor: Globals.darkPurple,
       primaryColor: Globals.lightPurple,
       textTheme: TextTheme(
-        headline1: TextStyle(
-          color: Globals.white,
-          fontFamily: GoogleFonts.poppins().fontFamily,
-          fontWeight: FontWeight.bold,
-          fontSize: 18.0,
-        ),
-        headline5: TextStyle(
+          headline1: TextStyle(
+            color: Globals.white,
+            fontFamily: GoogleFonts.poppins().fontFamily,
+            fontWeight: FontWeight.bold,
+            fontSize: 18.0,
+          ),
+          headline2: TextStyle(
             color: Globals.white,
             fontFamily: GoogleFonts.nunitoSans().fontFamily,
-            fontSize: 16.0),
-        headline6: TextStyle(
-            color: Globals.white,
-            fontFamily: GoogleFonts.nunitoSans().fontFamily,
-            fontSize: 16.0,
-            decoration: TextDecoration.lineThrough,
-            decorationThickness: 3),
-      ),
+            fontWeight: FontWeight.bold,
+            fontSize: 20.0,
+          ),
+          headline3: TextStyle(
+              color: Globals.white,
+              fontFamily: GoogleFonts.nunitoSans().fontFamily,
+              fontSize: 16.0),
+          headline4: TextStyle(
+              color: Globals.white,
+              fontFamily: GoogleFonts.nunitoSans().fontFamily,
+              fontSize: 16.0,
+              decoration: TextDecoration.lineThrough,
+              decorationThickness: 3),
+          headline5: TextStyle(
+              color: Globals.white,
+              fontFamily: GoogleFonts.nunitoSans().fontFamily,
+              fontSize: 12.0)),
       unselectedWidgetColor: Globals.white,
       checkboxTheme: CheckboxThemeData(
         fillColor: MaterialStateColor.resolveWith(
