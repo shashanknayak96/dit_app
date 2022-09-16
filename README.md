@@ -1,16 +1,17 @@
-# dit_app
+# DIT App
 
-A new Flutter project.
+Yet another note taking application... with a bit of twist.
 
-## Getting Started
+## Idea
 
-This project is a starting point for a Flutter application.
+The basic idea for the application is to be able to plan tasks such that they become easier to manage and complete when required.
 
-A few resources to get you started if this is your first Flutter project:
+The idea is:
+1. You plan out tasks you want to/have to do and add them to the application.
+2. Once a task has been completed, you mark them checked.
+3. Everyday at midnight, all the tasks that were checked will be removed (meaning you no longer have to worry about them)
+4. The tasks that weren't checked will be remain in the list and continue to show unless checked.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Contribution
+Feel free to raise a PR for any bugs/fixes you feel can be incorporated to the application.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
