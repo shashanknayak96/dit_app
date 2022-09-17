@@ -1,6 +1,10 @@
 # DIT App
 
-Yet another note taking application... with a bit of twist.
+A note taking application to help get your tasks done.
+
+## Download
+
+Get the apk file from <a href="https://github.com/shashanknayak96/dit_app/releases" >Release</a>'s section.
 
 ## Idea
 
