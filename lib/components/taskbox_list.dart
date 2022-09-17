@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:DIT/components/confirm_alert_dialog.dart';
 import 'package:DIT/components/taskbox.dart';
 import 'package:flutter/material.dart';
 import 'package:store_keeper/store_keeper.dart';
@@ -17,12 +20,18 @@ class _TaskBoxListState extends State<TaskBoxList> {
   var taskList = [
     Task(const Uuid().v1(), "My task 1", false, DateTime.now()),
   ];
+  final taskStore = (StoreKeeper.store as TaskStore).taskList;
 
   @override
   Widget build(BuildContext context) {
-    final taskStore = (StoreKeeper.store as TaskStore).taskList;
     StoreKeeper.listen(context, to: [AddTask, SortTasks, ToggleCheckbox]);
     SortTasks();
+
+    Timer.periodic(
+      const Duration(seconds: 1),
+      (Timer t) => removeCheckedTasks(),
+    );
+
     return Expanded(
       child: SingleChildScrollView(
         child: Container(
@@ -34,6 +43,14 @@ class _TaskBoxListState extends State<TaskBoxList> {
                   (task) => Dismissible(
                     key: Key(task.id),
                     onDismissed: (direction) => {RemoveTask(task.id)},
+                    confirmDismiss: (DismissDirection direction) async {
+                      return await showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return ConfirmAlertDialog();
+                        },
+                      );
+                    },
                     child: TaskBox(
                       id: task.id,
                       value: task.value,
@@ -49,7 +66,19 @@ class _TaskBoxListState extends State<TaskBoxList> {
     );
   }
 
-  refresh() {
-    setState(() {});
+  removeCheckedTasks() {
+    var timeNow = DateTime.now();
+    var timeToMidnight = DateTime(timeNow.year, timeNow.month, timeNow.day)
+        .add(const Duration(days: 1));
+    var tasks = taskStore.tasks as List<Task>;
+    bool isTimeBeforeMidnight = false;
+
+    // tasks.forEach((x) => {
+    //       isTimeBeforeMidnight =
+    //           x.addedOn.difference(timeToMidnight).isNegative ? false : true,
+    //       // print(timeToMidnight.difference(other)),
+    //       if (isTimeBeforeMidnight && x.isChecked)
+    //         {RemoveTask(x.id), print("REMOVING")}
+    //     });
   }
 }

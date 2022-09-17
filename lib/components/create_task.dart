@@ -34,6 +34,7 @@ class _CreateTaskState extends State<CreateTask> {
         controller: taskValue,
         style: TextStyle(color: Globals.white),
         cursorColor: Globals.white,
+        textCapitalization: TextCapitalization.sentences,
         decoration: InputDecoration(
             fillColor: Theme.of(context).primaryColor,
             border: const OutlineInputBorder(),

@@ -1,8 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
-
 import '../utils/globals.dart';
 
 class MidnightTimer extends StatefulWidget {
@@ -19,7 +17,9 @@ class _MidnightTimerState extends State<MidnightTimer> {
   void initState() {
     super.initState();
     Timer.periodic(
-        const Duration(seconds: 1), (Timer t) => getTimeToMidnight());
+      const Duration(seconds: 1),
+      (Timer t) => getTimeToMidnight(),
+    );
   }
 
   @override

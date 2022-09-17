@@ -15,4 +15,5 @@ class Globals {
   static Color darkPurple = const Color(0xff333456);
   static Color lightPurple = const Color(0xff595B83);
   static Color lightPink = const Color(0xffF4ABC4);
+  static Color darkPink = const Color(0xffFA81AA);
 }

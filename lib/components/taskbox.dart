@@ -33,19 +33,24 @@ class _TaskBoxState extends State<TaskBox> {
       padding: const EdgeInsets.only(left: 16.0, right: 16.0, top: 6.0),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(Globals.borderRadius),
-        child: Container(
-          height: Globals.taskHeight,
-          color: Theme.of(context).primaryColor,
-          child: InkWell(
-            borderRadius: BorderRadius.circular(Globals.borderRadius),
-            onTap: () => {
-              ToggleCheckbox(widget.id),
-            },
-            child: Row(
-              children: [
-                _buildCheckbox(context),
-                _buildLabel(context),
-              ],
+        child: ConstrainedBox(
+          constraints: BoxConstraints(minHeight: Globals.taskHeight),
+          child: Container(
+            // height: Globals.taskHeight,
+            color: Theme.of(context).primaryColor,
+            child: InkWell(
+              borderRadius: BorderRadius.circular(Globals.borderRadius),
+              onTap: () => {
+                ToggleCheckbox(widget.id),
+              },
+              child: Row(
+                children: [
+                  _buildCheckbox(context),
+                  Expanded(
+                    child: _buildLabel(context),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
@@ -78,6 +83,7 @@ class _TaskBoxState extends State<TaskBox> {
       padding: const EdgeInsets.all(8.0),
       child: Text(
         widget.value,
+        maxLines: null,
         style: widget.isChecked
             ? Theme.of(context).textTheme.headline4
             : Theme.of(context).textTheme.headline3,
