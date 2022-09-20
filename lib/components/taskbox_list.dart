@@ -8,6 +8,7 @@ import 'package:uuid/uuid.dart';
 
 import '../core/task_store.dart';
 import '../model/task.dart';
+import '../utils/time_helper.dart';
 
 class TaskBoxList extends StatefulWidget {
   const TaskBoxList({super.key});
@@ -17,9 +18,6 @@ class TaskBoxList extends StatefulWidget {
 }
 
 class _TaskBoxListState extends State<TaskBoxList> {
-  var taskList = [
-    Task(const Uuid().v1(), "My task 1", false, DateTime.now()),
-  ];
   final taskStore = (StoreKeeper.store as TaskStore).taskList;
 
   @override
@@ -67,18 +65,21 @@ class _TaskBoxListState extends State<TaskBoxList> {
   }
 
   removeCheckedTasks() {
-    var timeNow = DateTime.now();
-    var timeToMidnight = DateTime(timeNow.year, timeNow.month, timeNow.day)
-        .add(const Duration(days: 1));
+    var currentTime = DateTime.now();
     var tasks = taskStore.tasks as List<Task>;
     bool isTimeBeforeMidnight = false;
 
-    // tasks.forEach((x) => {
-    //       isTimeBeforeMidnight =
-    //           x.addedOn.difference(timeToMidnight).isNegative ? false : true,
-    //       // print(timeToMidnight.difference(other)),
-    //       if (isTimeBeforeMidnight && x.isChecked)
-    //         {RemoveTask(x.id), print("REMOVING")}
-    //     });
+    DateTime midnightTime;
+
+    for (var x in tasks) {
+      if (!x.isChecked) continue;
+
+      midnightTime = TimeHelper.getMidnightTime(x.checkedOn ?? x.addedOn);
+      isTimeBeforeMidnight = midnightTime.isBefore(currentTime);
+
+      if (isTimeBeforeMidnight && x.isChecked) {
+        RemoveTask(x.id);
+      }
+    }
   }
 }

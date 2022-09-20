@@ -1,7 +1,6 @@
 class TimeHelper {
-  isPastMidnight<bool>() {
-    var timeNow = DateTime.now();
-    var timeToMidnight = DateTime(timeNow.year, timeNow.month, timeNow.day)
+  static DateTime getMidnightTime(DateTime dateTime) {
+    return DateTime(dateTime.year, dateTime.month, dateTime.day)
         .add(const Duration(days: 1));
   }
 }

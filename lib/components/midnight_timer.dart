@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import '../utils/globals.dart';
+import '../utils/time_helper.dart';
 
 class MidnightTimer extends StatefulWidget {
   const MidnightTimer({super.key});
@@ -73,8 +74,7 @@ class _MidnightTimerState extends State<MidnightTimer> {
 
   getTimeToMidnight() {
     var timeNow = DateTime.now();
-    var timeToMidnight = DateTime(timeNow.year, timeNow.month, timeNow.day)
-        .add(const Duration(days: 1));
+    var timeToMidnight = TimeHelper.getMidnightTime(timeNow);
     var timeDifference = timeToMidnight.difference(timeNow);
 
     setState(() {

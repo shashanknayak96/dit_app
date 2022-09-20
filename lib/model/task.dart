@@ -9,17 +9,42 @@ class Task {
   final String value;
   bool isChecked;
   final DateTime addedOn;
+  DateTime? checkedOn;
 
-  Task(
-    this.id,
-    this.value,
-    this.isChecked,
-    this.addedOn,
-  );
+  Task(this.id, this.value, this.isChecked, this.addedOn, this.checkedOn);
 }
 
 class TaskList {
-  final List<Task> _tasks = [];
+  final List<Task> _tasks = [
+    Task(
+      "1",
+      "Added yesterday unchecked",
+      false,
+      DateTime.now().subtract(const Duration(days: 1)),
+      null,
+    ),
+    Task(
+      "2",
+      "Added yesterday checked",
+      true,
+      DateTime.now().subtract(const Duration(days: 1)),
+      DateTime.now().subtract(const Duration(days: 1)),
+    ),
+    Task(
+      "3",
+      "Added today unchecked",
+      false,
+      DateTime.now(),
+      null,
+    ),
+    Task(
+      "4",
+      "Added today checked",
+      true,
+      DateTime.now(),
+      DateTime.now(),
+    ),
+  ];
 
   get tasks => _tasks.toList();
 
@@ -39,8 +64,13 @@ class AddTask extends Mutation<TaskStore> {
 
   @override
   exec() {
-    store.taskList._tasks
-        .add(Task(const Uuid().v1(), task, false, DateTime.now()));
+    store.taskList._tasks.add(Task(
+      const Uuid().v1(),
+      task,
+      false,
+      DateTime.now(),
+      null,
+    ));
   }
 }
 
@@ -72,5 +102,6 @@ class ToggleCheckbox extends Mutation<TaskStore> {
     var task = tasks.firstWhereOrNull((x) => x.id == id);
     var taskIndex = tasks.indexWhere((x) => x.id == task?.id);
     tasks[taskIndex].isChecked = !tasks[taskIndex].isChecked;
+    tasks[taskIndex].checkedOn = DateTime.now();
   }
 }
