@@ -34,24 +34,32 @@ class _CreateTaskState extends State<CreateTask> {
         controller: taskValue,
         style: TextStyle(color: Globals.white),
         cursorColor: Globals.white,
+        textInputAction: TextInputAction.done,
         textCapitalization: TextCapitalization.sentences,
+        onSubmitted: ((value) {
+          if (value.isEmpty) return;
+          AddTask(value);
+          taskValue.text = "";
+        }),
         decoration: InputDecoration(
-            fillColor: Theme.of(context).primaryColor,
-            border: const OutlineInputBorder(),
-            contentPadding: const EdgeInsets.all(10.0),
-            hintText: "Enter a task you want to complete...",
-            hintStyle: Theme.of(context).textTheme.headline5,
-            enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(
-                width: 1,
-                color: Globals.lightPurple,
-              ),
-            ),
-            focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(
+          fillColor: Theme.of(context).primaryColor,
+          border: const OutlineInputBorder(),
+          contentPadding: const EdgeInsets.all(10.0),
+          hintText: "Enter a task you want to complete...",
+          hintStyle: Theme.of(context).textTheme.headline5,
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(
               width: 1,
               color: Globals.lightPurple,
-            ))),
+            ),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(
+              width: 1,
+              color: Globals.lightPurple,
+            ),
+          ),
+        ),
       ),
     );
   }
