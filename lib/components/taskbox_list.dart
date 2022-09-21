@@ -21,10 +21,14 @@ class _TaskBoxListState extends State<TaskBoxList> {
   final taskStore = (StoreKeeper.store as TaskStore).taskList;
 
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     StoreKeeper.listen(context, to: [AddTask, SortTasks, ToggleCheckbox]);
     SortTasks();
-
     Timer.periodic(
       const Duration(seconds: 1),
       (Timer t) => removeCheckedTasks(),
@@ -66,7 +70,7 @@ class _TaskBoxListState extends State<TaskBoxList> {
 
   removeCheckedTasks() {
     var currentTime = DateTime.now();
-    var tasks = taskStore.tasks as List<Task>;
+    var tasks = taskStore.tasks;
     bool isTimeBeforeMidnight = false;
 
     DateTime midnightTime;
@@ -82,4 +86,8 @@ class _TaskBoxListState extends State<TaskBoxList> {
       }
     }
   }
+
+  // Future<void> loadTasks() async {
+  //   tasks = await taskStore.tasks;
+  // }
 }

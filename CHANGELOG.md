@@ -2,6 +2,15 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [1.4.0] - 2022-09-18
+
+- Added persistence logic using Hive
+
+## [1.3.0] - 2022-09-18
+
+- Added confirmation dialogbox when removing tasks
+- Added logic for removing tasks when past midnight
+
 ## [1.2.0] - 2022-09-18
 
 - Fix long text not wrapping correctly
