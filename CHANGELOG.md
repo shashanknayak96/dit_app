@@ -2,9 +2,15 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [1.4.1] - 2022-09-18
+
+- Added trim to task value
+- Make sure checked tasks persists
+
 ## [1.4.0] - 2022-09-18
 
 - Added persistence logic using Hive
+- Pressing Enter key will add task
 
 ## [1.3.0] - 2022-09-18
 

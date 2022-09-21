@@ -37,7 +37,7 @@ class _CreateTaskState extends State<CreateTask> {
         textInputAction: TextInputAction.done,
         textCapitalization: TextCapitalization.sentences,
         onSubmitted: ((value) {
-          if (value.isEmpty) return;
+          if (value.trim().isEmpty) return;
           AddTask(value);
           taskValue.text = "";
         }),
@@ -70,7 +70,7 @@ class _CreateTaskState extends State<CreateTask> {
 
     return ElevatedButton(
       onPressed: () {
-        if (taskValue.text.isEmpty) return;
+        if (taskValue.text.trim().isEmpty) return;
         AddTask(taskValue.text);
         taskValue.text = "";
       },

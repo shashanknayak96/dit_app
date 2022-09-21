@@ -101,8 +101,7 @@ class AddTask extends Mutation<TaskStore> {
     var taskJsonString = jsonEncode(store.taskList._tasks);
     storage.setItem("tasks", taskJsonString);
 
-    var box = Hive.box('ditBox');
-    await box.put("tasks", store.taskList._tasks);
+    SaveToHiveBox.save(store.taskList._tasks);
   }
 }
 
@@ -113,8 +112,7 @@ class RemoveTask extends Mutation<TaskStore> {
   exec() async {
     store.taskList._tasks.removeWhere((x) => x.id == id);
 
-    var box = Hive.box('ditBox');
-    await box.put("tasks", store.taskList._tasks);
+    SaveToHiveBox.save(store.taskList._tasks);
   }
 }
 
@@ -138,5 +136,14 @@ class ToggleCheckbox extends Mutation<TaskStore> {
     var taskIndex = tasks.indexWhere((x) => x.id == task?.id);
     tasks[taskIndex].isChecked = !tasks[taskIndex].isChecked;
     tasks[taskIndex].checkedOn = DateTime.now();
+
+    SaveToHiveBox.save(store.taskList._tasks);
+  }
+}
+
+class SaveToHiveBox {
+  static save(value) async {
+    var box = Hive.box('ditBox');
+    await box.put("tasks", value);
   }
 }
